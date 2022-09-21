@@ -1,0 +1,24 @@
+/select * from car_sales_transactions;
+/*1*/
+select sales_id, name, year, km_driven, owner from car_sales_transactions where year between 2016 and 2020 and km_driven<80000
+and owner ='First Owner';
+
+/*2*/
+select sales_id, name, year,seats,fuel,mileage from CAR_SALES_TRANSACTIONS where year between 2018 and 2020 and fuel ='Diesel' 
+and seats in (4,5) and mileage between '24%' and '26%';
+
+/*3*/
+select name, year, seller_type, km_driven, sold from car_sales_transactions join Sales_Status on 
+car_sales_transactions.sales_id = sales_status.sales_id where year between 2014 and 2020 and 
+km_driven<60000 and sold= 'N' and seller_type in ('Dealer','Individual');
+
+/*4*/
+select name, year, transmission, mileage, city_name from car_sales_transactions join city_master on 
+car_sales_transactions.state_code = city_master.state_code where mileage between '20%' and '25%' and 
+transmission in ('Manual','Automatic') and city_name in ('Washington','New York City','Chicago','Los Angeles'); 
+/* only indian cities no US cities*/
+
+/*5*/
+select name ,owner ,fuel ,mileage , sold, seats from car_sales_transactions join Sales_Status on
+car_sales_transactions.sales_id = sales_status.sales_id where name like 'Honda%' and owner in ('First Owner','Second Owner') and
+fuel='Petrol' and mileage='25%' and sold='N' and seats>=4;  /* no car has mileage of 25kmpl*/
